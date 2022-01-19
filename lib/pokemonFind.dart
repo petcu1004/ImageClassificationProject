@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PokemonFind extends StatefulWidget {
   const PokemonFind({ Key? key }) : super(key: key);
@@ -8,8 +11,15 @@ class PokemonFind extends StatefulWidget {
 }
 
 class _PokemonFindState extends State<PokemonFind> {
-  //PickedFile f = await ImagePicker().getImage(source: ImageSource.gallery);
-  //File dummyFile = File(f.path);
+  //final XFile f = await _picker.pickerImage
+  //XFile f = await ImagePicker().getImage(source: ImageSource.gallery);//갤러리에서 사진을 가져옵니다.
+  //File dummyFile = File(f.path);//가져온 사진의 Type을 File 형식으로 바꿔줍니다.
+  //PickedFile f = await ImagePicker().getImage(source: ImageSource.camera);//갤러리에서 사진을 가져옵니다.
+  //File dummyFile = File(f.path);//가져온 사진의 Type을 File 형식으로 바꿔줍니다.
+  
+  //final ImagePicker _picker = ImagePicker();
+  //PickedFile _image;
+  //_image == null ? Text("No image") : Image.file(File(_image.path));
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +30,20 @@ class _PokemonFindState extends State<PokemonFind> {
       body: Container(
         child: Column(
           children: [
-            //
+            //Container(
+            //  width: 300,
+            //  height: 300,
+            //  decoration: BoxDecoration(
+            //    image: DecorationImage(
+            //      image: FileImage(f),
+            //      fit: BoxFit.cover
+            //    )
+            //  ),
+            //),
+            //FloatingActionButton(
+            //  onPressed: _getImage,
+            //  child: Icon(Icons.add_a_photo),
+            //),
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -34,4 +57,10 @@ class _PokemonFindState extends State<PokemonFind> {
       ),
     );
   }
+//  Future _getImage() async {
+//    PickedFile image = await _picker.getImage(source: ImageSource.gallery);
+//    setState(() {
+//      _image = image;
+//    });
+//  }
 }
