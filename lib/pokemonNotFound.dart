@@ -8,6 +8,8 @@ class PokemonNotFound extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('포켓몬 찾기 실패'),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent, 
       ),
       body: Container(
         child: Center(

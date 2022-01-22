@@ -5,7 +5,9 @@ class PokemonFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('포멧몬 찾기 성공'),
+        title: Text('포켓몬 찾기 성공'),
+        backgroundColor: Colors.redAccent, 
+        centerTitle: true, 
       ),
       body: Container(
         child: Center(

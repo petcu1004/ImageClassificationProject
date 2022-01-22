@@ -14,7 +14,8 @@ class _PokemonFindState extends State<PokemonFind> {
   // final ImagePicker _picker = ImagePicker();
   // late PickedFile _image;
 
-  File _image=File("images/what.png");
+  // File _image=File("images/what.png");
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,8 @@ class _PokemonFindState extends State<PokemonFind> {
               SizedBox(height: 40,), 
 
               _image==null
-              ? Container(
+              ? 
+              Container(
                 decoration: BoxDecoration(
                 border: Border.all(
                 color:Colors.black,
@@ -47,10 +49,12 @@ class _PokemonFindState extends State<PokemonFind> {
                 ),
                 child: Center(child: Text("<No Image>"),),
                 width: 500,
-                height: 450,
+                height: 470,
+                
                 
               )
-              : Image.file(File(_image.path)),
+            
+              : Image.file(File(_image!.path)),
               // :Image.file(_image, fit:BoxFit.fill),
 
               
