@@ -11,8 +11,11 @@ class PokemonFind extends StatefulWidget {
 }
 
 class _PokemonFindState extends State<PokemonFind> {
-  final ImagePicker _picker = ImagePicker();
-  late PickedFile _image;
+  // final ImagePicker _picker = ImagePicker();
+  // late PickedFile _image;
+
+  File _image=File("images/what.png");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +32,12 @@ class _PokemonFindState extends State<PokemonFind> {
             children: [
               Text(
                 '<찾고싶은 포켓몬 사진을 가져오세요>',
-                //텍스트 스타일에서 폰트 사이즈 조절
                 style: TextStyle(fontSize: 20, letterSpacing: 1.5),
               ),
               SizedBox(height: 40,), 
-              _image==null?
-              Container(
+
+              _image==null
+              ? Container(
                 decoration: BoxDecoration(
                 border: Border.all(
                 color:Colors.black,
@@ -48,6 +51,7 @@ class _PokemonFindState extends State<PokemonFind> {
                 
               )
               : Image.file(File(_image.path)),
+              // :Image.file(_image, fit:BoxFit.fill),
 
               
               SizedBox(height: 40,), 
@@ -55,26 +59,46 @@ class _PokemonFindState extends State<PokemonFind> {
               ElevatedButton(onPressed: (){
                 Navigator.of(context).pushNamed('/second');
               }, child: Text('찾기'),
+              style: TextButton.styleFrom(backgroundColor: Colors.redAccent),
               )
             ],
           ),
           
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: _getImage,
+          onPressed: selectFromGallery,
           child: Icon(Icons.add_a_photo),
         ),
       
     );
   }
 
-  Future _getImage() async {
-    PickedFile image = await _picker.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image = image;
+  // Future _getImage() async {
+  //   PickedFile image = await _picker.getImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     _image = image;
 
+  //   });
+  // }
+
+  selectFromGallery() async{
+    XFile? ximage=await ImagePicker().pickImage(source: ImageSource.gallery);
+    File image = File(ximage!.path);
+    if(image ==null) return;
+    setState(() {
+      // sendImage(image);
+      _image=image;
     });
   }
+
+  // _imageFromGallery() async {
+  //   XFile? image = await ImagePicker()
+  //       .pickImage(source: ImageSource.gallery, imageQuality: 50);
+  //   setState(() {
+  //     _image = image;
+  //   });
+  // }
+
 
 
 }

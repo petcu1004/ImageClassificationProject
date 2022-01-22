@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, //오른쪽 위 디버그 라벨 삭제
       title : _title,
+      theme: ThemeData(primaryColor: Colors.redAccent),
       initialRoute: '/',
       routes:{
         '/' : (context) => Start(),
