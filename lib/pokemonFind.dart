@@ -1,8 +1,9 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:tflite/tflite.dart';
+
+import 'dart:io'; //이미지 피커에서 골라온 사진을 파일로 활용하기 위해서 사용
 
 class PokemonFind extends StatefulWidget {
 
@@ -11,7 +12,6 @@ class PokemonFind extends StatefulWidget {
 }
 
 class _PokemonFindState extends State<PokemonFind> {
-<<<<<<< HEAD
   File? _image;
 
   List? _outputs;
@@ -30,6 +30,7 @@ class _PokemonFindState extends State<PokemonFind> {
       labels: "assets/label.txt",
     ).then((value) {
       setState(() {
+        //_loading=false;
       });
     });
   }
@@ -47,8 +48,6 @@ class _PokemonFindState extends State<PokemonFind> {
       _outputs = output;
     });
   }
-=======
->>>>>>> a93d5503c7cb7e2cb8dd3ad04052576bcf8fadca
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +62,89 @@ class _PokemonFindState extends State<PokemonFind> {
       body: Center(
         child: Column(
           children: [
-
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              '           카메라/갤러리에서\n찾고싶은 포켓몬 사진을 가져오세요',
+              style: TextStyle(fontSize: 18, letterSpacing: 1.5),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 310,
+              width: 310,
+              child: _image == null
+                  ? Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          style: BorderStyle.solid,
+                          width: 2,
+                        ),
+                      ),
+                    )
+                  : Image.file(File(_image!.path)),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  onPressed: selectFromCamera,
+                  icon: Icon(Icons.camera_alt_outlined),
+                  iconSize: 50,
+                ),
+                IconButton(
+                  onPressed: selectFromGallery,
+                  icon: Icon(Icons.collections_outlined),
+                  iconSize: 50,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              //실선
+              height: 1.0,
+              width: 350.0,
+              color: Colors.black,
+            ),
+            SizedBox(height: 25),
+            _outputs != null && _outputs?.length != 0
+                ? SizedBox(
+                    child: Column(
+                    children: [
+                      Text(
+                        '< 포켓몬 정보 >',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        "이름 - 속성",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        _outputs![0]['label'].toString().toUpperCase(),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          background: Paint()..color = Colors.white,
+                        ),
+                      ),
+                    ],
+                  ))
+                : Text(
+                    "데이터가 없거나 잘못된 이미지 입니다.",
+                    style: TextStyle(fontSize: 20),
+                  ),
           ],
         ),
       ),
@@ -78,7 +159,6 @@ class _PokemonFindState extends State<PokemonFind> {
     );
   }
 
-<<<<<<< HEAD
   selectFromGallery() async {
     XFile? ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
     File image = File(ximage!.path);
@@ -107,5 +187,3 @@ class _PokemonFindState extends State<PokemonFind> {
     super.dispose();
   }
 }
-=======
->>>>>>> a93d5503c7cb7e2cb8dd3ad04052576bcf8fadca
