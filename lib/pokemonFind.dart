@@ -6,7 +6,6 @@ import 'package:tflite/tflite.dart';
 import 'dart:io'; //이미지 피커에서 골라온 사진을 파일로 활용하기 위해서 사용
 
 class PokemonFind extends StatefulWidget {
-  // const PokemonFind({ Key? key }) : super(key: key);
 
   @override
   _PokemonFindState createState() => _PokemonFindState();
@@ -31,14 +30,12 @@ class _PokemonFindState extends State<PokemonFind> {
       labels: "assets/label.txt",
     ).then((value) {
       setState(() {
-        //_loading=false;
       });
     });
   }
 
   //이미지 분류
   Future classifyImage(File image) async {
-    // print("TEST$image");
     var output = await Tflite.runModelOnImage(
         path: image.path,
         imageMean: 0.0,
@@ -170,7 +167,6 @@ class _PokemonFindState extends State<PokemonFind> {
     });
     await classifyImage(File(image.path)); //가져온 이미지를 분류하기 위해 await을 사용
     //await을 사용하지 않으면 새로 가져온 이미지를 분류하지 않고 이전에 있었던 이미지를 가지고 분류하는 경우가 생기게 된다.
-    // recycleDialog();
   }
 
   selectFromCamera() async {
@@ -186,7 +182,7 @@ class _PokemonFindState extends State<PokemonFind> {
   // 앱이 종료될 때
   @override
   void dispose() {
-    // Tflite.close();
+    Tflite.close();
     super.dispose();
   }
 }
