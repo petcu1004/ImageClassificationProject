@@ -13,7 +13,7 @@ class _StartState extends State<Start> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('포켓몬'), 
+          title: Text('포켓몬 분류 앱'), 
           centerTitle: true, 
           backgroundColor: Colors.redAccent, 
           elevation: 0.0, 

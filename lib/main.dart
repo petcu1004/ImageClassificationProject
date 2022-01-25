@@ -3,11 +3,7 @@ import 'package:flutter_application_first_toy_project/pokemonFind.dart';
 import 'package:flutter_application_first_toy_project/pokemonFound.dart';
 import 'package:flutter_application_first_toy_project/pokemonNotFound.dart';
 import 'package:flutter_application_first_toy_project/start.dart';
-import 'package:flutter_application_first_toy_project/book.dart';
-
-// import 'package:ImageClassificationProject/pokemonFind.dart';
-// import 'package:ImageClassificationProject/pokemonFound.dart';
-// import 'package:ImageClassificationProject/pokemonNotFound.dart';
+import 'package:flutter_application_first_toy_project/PokemonDictionary.dart';
 
 
 void main(){
@@ -29,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/first' : (context) => PokemonFind(),
         '/second':(context) => PokemonFound(),
         '/third':(context) => PokemonNotFound(),
-        '/book':(context) => Book()
+        '/book':(context) => PokemonDictionary()
       },
     );
   }
