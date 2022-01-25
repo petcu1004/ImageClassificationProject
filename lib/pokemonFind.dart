@@ -51,108 +51,6 @@ class _PokemonFindState extends State<PokemonFind> {
     });
   }
 
-  show() {
-    if(_outputs != null && _outputs!.length !=0)
-        {SizedBox(
-            child: Column(
-            children: [
-              Text(
-                '< 포켓몬 정보 >',
-                style: TextStyle(fontSize: 30),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "이름 - 속성",
-                style: TextStyle(fontSize: 20),
-              ),
-              Text(
-                _outputs![0]['label'].toString().toUpperCase(),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  background: Paint()..color = Colors.white,
-                ),
-              ),
-            ],
-          ));}
-        else{
-          Text(
-            "데이터가 없거나 잘못된 이미지 입니다.",
-            style: TextStyle(fontSize: 20),
-          );
-        }
-  }
-
-  recycleDialog() {
-    _outputs != null
-        ? showDialog(
-            context: context,
-            barrierDismissible:
-                false, // barrierDismissible - Dialog를 제외한 다른 화면 터치 x
-            builder: (BuildContext context) {
-              return AlertDialog(
-                // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "이름  -  속성\n" +
-                          _outputs![0]['label'].toString().toUpperCase(),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                        background: Paint()..color = Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                actions: <Widget>[
-                  Center(
-                    child: new FlatButton(
-                      child: new Text("Ok"),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  )
-                ],
-              );
-            })
-        : showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "데이터가 없거나 잘못된 이미지 입니다.",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                    ),
-                  ],
-                ),
-                actions: <Widget>[
-                  Center(
-                    child: new FlatButton(
-                      child: new Text("Ok"),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  )
-                ],
-              );
-            });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,10 +62,8 @@ class _PokemonFindState extends State<PokemonFind> {
         toolbarHeight: 70, //AppBar 높이
       ),
       body: Center(
-        // padding: EdgeInsets.fromLTRB(40, 20, 40, 20), //모든 화면에서 40만큼 띄움
         child: Column(
           children: [
-            // Padding(padding: EdgeInsets.fromLTRB(20, 20, 20, 20)), //모든 화면에서 40만큼 띄움
             SizedBox(
               height: 20,
             ),
@@ -181,10 +77,7 @@ class _PokemonFindState extends State<PokemonFind> {
             SizedBox(
               height: 310,
               width: 310,
-              child: 
-              
-              _image == null 
-              // && _image?.length() ==0
+              child: _image == null
                   ? Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -193,66 +86,30 @@ class _PokemonFindState extends State<PokemonFind> {
                           width: 2,
                         ),
                       ),
-                      // child: Center(child: TextButton(onPressed: selectFromGallery,
-                      // child: Text("포켓몬 사진을 가져오고 싶으면 이 문구를 입력하세요"),
-                      // style: TextButton.styleFrom(primary: Colors.black,),),
-
-                      //   child: Center(child: IconButton(onPressed: selectFromGallery,
-                      //   icon: Icon(Icons.collections_outlined),
-                      //   iconSize: 80,
-                      //   ),
-                      // ),
-                      // width: 500,
-                      // height: 470,
                     )
                   : Image.file(File(_image!.path)),
             ),
-
             SizedBox(
               height: 10,
             ),
-
-            // IconButton(
-            //         onPressed: selectFromCamera,
-
-              Row(
-                mainAxisAlignment : MainAxisAlignment.center,
-
-                children: <Widget>[
-                  IconButton(
-                    onPressed: selectFromCamera,
-                    icon: Icon(Icons.camera_alt_outlined),
-                    iconSize: 50,
-                  ),
-                  IconButton(
-                    onPressed: selectFromGallery,
-                    icon: Icon(Icons.collections_outlined),
-                    iconSize: 50,
-                  ),
-                ],
-              
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  onPressed: selectFromCamera,
+                  icon: Icon(Icons.camera_alt_outlined),
+                  iconSize: 50,
+                ),
+                IconButton(
+                  onPressed: selectFromGallery,
+                  icon: Icon(Icons.collections_outlined),
+                  iconSize: 50,
+                ),
+              ],
             ),
-
             SizedBox(
               height: 5,
             ),
-
-            // ElevatedButton(
-            //     onPressed: () {
-            //       show();
-            //       // recycleDialog();
-            //       // Navigator.of(context)
-            //       //     .pushNamed('/second', arguments: _image?.path);
-            //     },
-            //     child: Text('찾기'),
-            //     style: TextButton.styleFrom(
-            //       textStyle: TextStyle(
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 20,
-            //       ),
-            //       backgroundColor: Colors.redAccent,
-            //       minimumSize: Size(200.0, 40.0),
-            //     )),
             SizedBox(
               height: 15,
             ),
@@ -263,7 +120,6 @@ class _PokemonFindState extends State<PokemonFind> {
               color: Colors.black,
             ),
             SizedBox(height: 25),
-
             _outputs != null && _outputs?.length != 0
                 ? SizedBox(
                     child: Column(
@@ -291,21 +147,6 @@ class _PokemonFindState extends State<PokemonFind> {
                     "데이터가 없거나 잘못된 이미지 입니다.",
                     style: TextStyle(fontSize: 20),
                   ),
-
-            //   // Padding(padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
-            // child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            // children: [
-            // Text(
-            //           "이름  -  속성\n"+_outputs![0]['label'].toString().toUpperCase(),
-            //           style: TextStyle(
-            //             color: Colors.black,
-            //             fontSize: 15.0,
-            //             background: Paint()..color = Colors.white,
-            //           ),
-            //         ),
-            // // Text('속성 : ')
-            // ],),
-            // ),
           ],
         ),
       ),
