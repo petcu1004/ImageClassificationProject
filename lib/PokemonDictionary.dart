@@ -125,21 +125,21 @@ class _PokemonDictionaryState extends State<PokemonDictionary> {
                     color: Colors.redAccent,
                     size: 25,
                   ),
-                  // suffixIcon: focusNode.hasFocus
-                  //     ? IconButton(
-                  //         icon: Icon(
-                  //           Icons.cancel_outlined,
-                  //           color: Colors.redAccent,
-                  //           size: 25,
-                  //         ),
-                  //         onPressed: () {
-                  //           setState(() {
-                  //             _filter.clear();
-                  //             _searchText = "";
-                  //           });
-                  //         },
-                  //       )
-                  //     : Container(),
+                    suffixIcon: focusNode.hasFocus
+                      ? null
+                      : IconButton(
+                          icon: Icon(
+                            Icons.cancel_outlined,
+                            color: Colors.redAccent,
+                            size: 25,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _filter.clear();
+                              _searchText = "";
+                            });
+                          },
+                        ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
