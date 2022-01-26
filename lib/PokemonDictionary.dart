@@ -99,10 +99,16 @@ class _PokemonDictionaryState extends State<PokemonDictionary> {
       body: Scrollbar(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+            SizedBox(height: 20),
+            Row(
               
-              child: TextField(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 50,
+                  width: 360,
+                  child: TextField(
+                    
                 focusNode: focusNode,
                 style: TextStyle(
                   fontSize: 20,
@@ -119,21 +125,21 @@ class _PokemonDictionaryState extends State<PokemonDictionary> {
                     color: Colors.redAccent,
                     size: 25,
                   ),
-                  suffixIcon: focusNode.hasFocus
-                      ? IconButton(
-                          icon: Icon(
-                            Icons.cancel_outlined,
-                            color: Colors.redAccent,
-                            size: 25,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _filter.clear();
-                              _searchText = "";
-                            });
-                          },
-                        )
-                      : Container(),
+                  // suffixIcon: focusNode.hasFocus
+                  //     ? IconButton(
+                  //         icon: Icon(
+                  //           Icons.cancel_outlined,
+                  //           color: Colors.redAccent,
+                  //           size: 25,
+                  //         ),
+                  //         onPressed: () {
+                  //           setState(() {
+                  //             _filter.clear();
+                  //             _searchText = "";
+                  //           });
+                  //         },
+                  //       )
+                  //     : Container(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -147,9 +153,9 @@ class _PokemonDictionaryState extends State<PokemonDictionary> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
+                )
               ),
-            ),
-            IconButton(
+                IconButton(
                 icon: Icon(
                   Icons.send,
                   color: Colors.redAccent,
@@ -229,6 +235,10 @@ class _PokemonDictionaryState extends State<PokemonDictionary> {
                         });
                   }
                 }), //
+              ],
+            ),
+            SizedBox(height: 15,),
+            
 
             Expanded(
               child: GridView.builder(
